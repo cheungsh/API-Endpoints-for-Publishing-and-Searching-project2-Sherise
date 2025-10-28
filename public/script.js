@@ -1,6 +1,6 @@
 // fetch items from API endpoint and populate the content div
 const getData = async () => {
-    const response = await fetch('/data')
+    const response = await fetch('/mood')
     if (response.ok) {
         const data = await response.json()
         document.querySelector('#content').innerHTML = `<h3>✅ MongoDB connected. </h3>`

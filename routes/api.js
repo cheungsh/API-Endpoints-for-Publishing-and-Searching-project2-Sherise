@@ -3,20 +3,20 @@
 import express from 'express'
 const router = express.Router()
 
-// Set this to match the model name in your Prisma schema
-const model = 'items'
-
 // Prisma lets NodeJS communicate with MongoDB
 // Let's import and initialize the Prisma client
 // See also: https://www.prisma.io/docs
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
+// Set this to match the model name in your Prisma schema
+const model = 'mood'
+
 
 // ----- basic findMany() -------
 // This endpoint uses the Prisma schema defined in /prisma/schema.prisma
 // This gives us a cleaner data structure to work with. 
-router.get('/data', async (req, res) => {
+router.get('/mood', async (req, res) => {
     try {
         // fetch first 10 records from the database with no filter
         const result = await prisma[model].findMany({
@@ -40,7 +40,7 @@ router.get('/search', async (req, res) => {
         // fetch the records from the database
         const result = await prisma[model].findMany({
             where: {
-                name: {
+                moodValue: {
                     contains: searchTerms,
                     mode: 'insensitive'  // case-insensitive search
                 }
