@@ -8,15 +8,17 @@ datasource db {
 }
 
 model mood {
-  id              String   @id @default(auto()) @map("_id") @db.ObjectId
-  date            DateTime @db.Date
-  exerciseTrigger String?
-  hobbyTrigger    String?
-  mealTrigger     Int?
-  moodValue       String
-  periodTrigger   Boolean?
-  sleepTrigger    Int?
-  socialTrigger   String?
-  suggestions     String
-  weatherTrigger  String?
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  date        DateTime @db.Date
+  exercise    String?
+  hobby       String?
+  meal        String?
+  moodValue   String
+  period      Boolean?
+  sleepEnd    DateTime? @db.Date
+  sleepHours  Int?
+  sleepStart  DateTime? @db.Date
+  social      String?
+  suggestions String
+  weather     String?
 }
