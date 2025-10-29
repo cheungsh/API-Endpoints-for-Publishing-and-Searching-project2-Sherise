@@ -229,6 +229,9 @@ function submitMood() {
     let selectedMood = moodcomment.innerHTML;
     localStorage.setItem("mood", selectedMood);
 
+    /* Store Name locally */
+    let name = localStorage.getItem("name") || "Anonymous";
+
     /* Updating Days Recorded */
     recordedDayCounter++;
     /* Store Days Recorded*/
@@ -271,6 +274,23 @@ function submitMood() {
     }
     myChart.update();
     /* end of code https://codepen.io/sca-rufus/pen/EvJvMa */
+
+    /* Send data to backend */
+    fetch('/mood', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name,
+            moodValue: selectedMood,
+            exercise: "", hobby: "", meal: "",
+            social: "", weather: "", period: false,
+            sleepStart: null, sleepEnd: null, sleepHours: 0,
+            suggestions: ""
+        })
+    })
+    .then(response => response.json());
 }
 
 /* Mood data clears at 12:00:00am */

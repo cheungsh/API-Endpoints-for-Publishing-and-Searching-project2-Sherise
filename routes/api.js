@@ -12,14 +12,71 @@ const prisma = new PrismaClient()
 // Set this to match the model name in your Prisma schema
 const model = 'mood'
 
+/* ----- POST ------- */
+//Post a mood record
+router.post('/mood', async (req, res) => {
+  try {
+    const {
+      name,
+      moodValue,
+      exercise,
+      hobby,
+      meal,
+      social,
+      weather,
+      period,
+      sleepStart,
+      sleepEnd,
+      sleepHours,
+      suggestions
+    } = req.body;
 
-// ----- basic findMany() -------
+    // validate required fields
+    if (!name ||!moodValue) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+
+    /* ----- CREATE ------- */
+    //Create a new mood record in MongoDB
+    const newMood = await prisma[model].create({
+      data: {
+        name: name || 'Anonymous',
+        date: new Date(),
+        moodValue,
+        exercise: exercise || '',
+        hobby: hobby || '',
+        meal: meal || '',
+        social: social || '',
+        weather: weather || '',
+        period: Boolean(period),
+        sleepStart: sleepStart ? new Date(sleepStart) : new Date(),
+        sleepEnd: sleepEnd ? new Date(sleepEnd) : new Date(),
+        sleepHours: sleepHours ? parseFloat(sleepHours) : 0,
+        suggestions: suggestions || '',
+      },
+    });
+    //Testing
+    console.log('Mood saved:', newMood);
+    
+    res.status(201).json(newMood);
+
+  } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
+
+
+// ----- GET -------
 // This endpoint uses the Prisma schema defined in /prisma/schema.prisma
 // This gives us a cleaner data structure to work with. 
 router.get('/mood', async (req, res) => {
     try {
         // fetch first 10 records from the database with no filter
         const result = await prisma[model].findMany({
+            //print most recent entries first
+            orderBy: { date: 'desc' },
             take: 10
         })
         res.send(result)
@@ -30,7 +87,7 @@ router.get('/mood', async (req, res) => {
 })
 
 
-// ----- findMany() with search ------- 
+// ----- GET | Search ------- 
 // Accepts optional search parameter to filter by name field
 // See also: https://www.prisma.io/docs/orm/reference/prisma-client-reference#examples-7
 router.get('/search', async (req, res) => {
@@ -58,7 +115,7 @@ router.get('/search', async (req, res) => {
 });
 
 
-// ----- findRaw() -------
+// ----- GET -------
 // Returning Raw records from MongoDB
 // This endpoint does not use any schema. 
 // This is can be useful for testing and debugging.
