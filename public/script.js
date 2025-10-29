@@ -241,6 +241,7 @@ function submitMood() {
     /* start of code https://codepen.io/sca-rufus/pen/EvJvMa */
     /* Updating and Storing Mood Chart Data */
     let chartData = myChart.data.datasets[0].data;
+
     if (selectedMood === "calm") {
         chartData[0]++;
         localStorage.setItem("calmChartData", chartData[0]);
@@ -284,9 +285,15 @@ function submitMood() {
         body: JSON.stringify({
             name,
             moodValue: selectedMood,
-            exercise: "", hobby: "", meal: "",
-            social: "", weather: "", period: false,
-            sleepStart: null, sleepEnd: null, sleepHours: 0,
+            exercise: "", 
+            hobby: "", 
+            meal: "",
+            social: "", 
+            weather: "", 
+            period: false,
+            sleepStart: null, 
+            sleepEnd: null, 
+            sleepHours: 0,
             suggestions: ""
         })
     })
