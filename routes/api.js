@@ -12,8 +12,9 @@ const prisma = new PrismaClient()
 // Set this to match the model name in your Prisma schema
 const model = 'mood'
 
+/* ----- POST + Create------- */
+//Posts the mood record to MongoDB
 /* ----- POST ------- */
-//Post a mood record
 router.post('/mood', async (req, res) => {
   try {
     const {
@@ -69,8 +70,8 @@ router.post('/mood', async (req, res) => {
 
 
 // ----- GET -------
-// This endpoint uses the Prisma schema defined in /prisma/schema.prisma
-// This gives us a cleaner data structure to work with. 
+//Wouldn't be needing this I think, the output is already on the chart (Leave it here just in case)
+/*
 router.get('/mood', async (req, res) => {
     try {
         // fetch first 10 records from the database with no filter
@@ -85,11 +86,11 @@ router.get('/mood', async (req, res) => {
         res.status(500).send(err)
     }
 })
-
+*/
 
 // ----- GET | Search ------- 
-// Accepts optional search parameter to filter by name field
-// See also: https://www.prisma.io/docs/orm/reference/prisma-client-reference#examples-7
+//Might be useful in the future if I want to allow users to search for their past mood records
+/*
 router.get('/search', async (req, res) => {
     try {
         // get search term from query string; default to empty string (matches all)
@@ -113,12 +114,14 @@ router.get('/search', async (req, res) => {
         res.status(500).send(err);
     }
 });
+*/
 
 
 // ----- GET -------
 // Returning Raw records from MongoDB
 // This endpoint does not use any schema. 
 // This is can be useful for testing and debugging.
+/*
 router.get('/raw', async (req, res) => {
     try {
         // raw queries use native MongoDB query syntax
@@ -131,6 +134,7 @@ router.get('/raw', async (req, res) => {
         res.status(500).send(err)
     }
 })
+    */
 
 
 // export the api routes for use elsewhere in our app 
