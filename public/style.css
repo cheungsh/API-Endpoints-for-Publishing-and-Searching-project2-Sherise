@@ -1,3 +1,201 @@
-body {
-    font-family:Arial, Helvetica, sans-serif;
+/*-------------------Common Settings---------------------*/
+h2{
+    text-align: center;
+    font-size: 24px;
+    margin-top: 40px;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.responsive{
+    max-width: 100%;
+    height: auto;
+}
+
+/*-------------------Name Form---------------------*/
+#infoContainer{
+    display: block;
+    background-color: #e1ef63;
+    height: auto;
+    width: 80%;
+    border-radius: 20px;
+}
+.collectInfoForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    margin: 40px auto;
+    max-width: 500px;
+    background-color: #e1ef63;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+#infoContainer p{
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+#infoContainer h3{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+#infoContainer input{
+    width: 80%;
+    padding: 15px 15px;
+    border-radius: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+#infoContainer input, #submitbutton{
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border: none;
+}
+#submitbutton{
+    background-color: #b4a2f8;
+    width: 50%;
+}
+#submitbutton h3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #000;
+}
+#submitbutton:hover {
+    background-color: #000;
+    color: #e1ef63;
+}
+
+/*------------------Mood----------------------*/
+#Mood{
+    padding: 0 15px;
+}
+#Mood h2{
+    color: #000;
+}
+#Mood h3{
+    padding: 20px 0 0 0;
+    text-align: left;
+}
+/* Mood Slider */
+#m1{
+    background-color: rgba(202, 192, 211, 0.6);
+    border-radius: 20px;
+    text-align: center;
+}
+#m1>*{
+    padding: 15px;
+}
+.emoji{
+    width: 60%;
+    height: auto;
+    position: relative;
+    margin-bottom: 15px;
+}
+#moodSliderContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/* start of code https://blog.hubspot.com/website/html-slider*/
+#rangeSlider{
+    appearance: none;
+    padding:  0 5px;
+    width: 80%;
+    height: 30px;
+    background-color: #fff;
+    outline: none;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+#rangeSlider::-webkit-slider-thumb {
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #b4a2f8;
+}
+/* end of code https://blog.hubspot.com/website/html-slider*/
+#moodComment{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 16px;
+}
+#moodButton{
+    color: #000;
+    border-radius: 20px;
+    border: none;
+    height: 50px;
+    width: 120px;
+    background-color: rgb(202, 192, 211);
+}
+#m2{
+    border: 3px solid #b4a2f8;
+    color: #b4a2f8;
+    border-radius: 20px;
+    text-align: center;
+}
+#m2>*{
+    padding: 5px 15px;
+}
+#m2 p{
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+#recordedDayCounter{
+    font-size: 2rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+#m3{
+    border: 3px solid #b4a2f8;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+#m3>*{
+    padding: 10px 25px;
+}
+#m3 p{
+    color: #b4a2f8;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/*------------------Classes----------------------*/
+.two-row{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+.two-col{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+.three-col{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+.two-one-col{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr;
 }

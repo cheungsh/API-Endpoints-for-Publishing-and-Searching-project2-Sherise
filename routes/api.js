@@ -35,25 +35,27 @@ router.get('/mood', async (req, res) => {
 // See also: https://www.prisma.io/docs/orm/reference/prisma-client-reference#examples-7
 router.get('/search', async (req, res) => {
     try {
-        // get search terms from query string, default to empty string
-        const searchTerms = req.query.terms || ''
-        // fetch the records from the database
+        // get search term from query string; default to empty string (matches all)
+        const searchTerm = req.query.terms || '';
+
+        // fetch records from the database
         const result = await prisma[model].findMany({
             where: {
                 moodValue: {
-                    contains: searchTerms,
+                    contains: searchTerm,
                     mode: 'insensitive'  // case-insensitive search
                 }
             },
-            orderBy: { name: 'asc' },
+            orderBy: { date: 'desc' }, // most recent entries first
             take: 10
-        })
-        res.send(result)
+        });
+
+        res.send(result);
     } catch (err) {
-        console.log(err)
-        res.status(500).send(err)
+        console.log(err);
+        res.status(500).send(err);
     }
-})
+});
 
 
 // ----- findRaw() -------
