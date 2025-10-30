@@ -211,7 +211,7 @@ h2 {
   height: 0;
 }
 
-.switch  .slider {
+.switch .slider {
   position: absolute;
   cursor: pointer;
   background-color: #ccc;
@@ -223,7 +223,7 @@ h2 {
   border-radius: 24px;
 }
 
-.switch  .slider:before {
+.switch .slider:before {
   position: absolute;
   content: "";
   height: 20px;
@@ -235,11 +235,11 @@ h2 {
   border-radius: 50%;
 }
 
-.switch  input:checked + .slider {
+.switch input:checked + .slider {
   background-color: #ff5252;
 }
 
-.switch  input:checked + .slider:before {
+.switch input:checked + .slider:before {
   transform: translateX(26px);
 }
 
