@@ -1,14 +1,16 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
-  padding: 15px;
+  font-size: 1rem;
+  font-family: sans-serif;
+  max-width: 400px;
+  padding: 18px;
+  margin: auto;
 }
 
 h2 {
   text-align: center;
-  font-size: 24px;
-  margin-top: 40px;
+  font-size: 1.5rem;
 }
 
 .responsive {
@@ -16,63 +18,43 @@ h2 {
   height: auto;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 /*-------------------User Name Form---------------------*/
 .collectInfoForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
-  padding: 20px;
-  margin: 40px auto;
-  max-width: 500px;
+  padding: 10px;
   background-color: #e1ef63;
   border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.collectInfoForm p {
-  font-weight: 300;
-}
-
-.collectInfoForm h3 {
-  font-weight: 600;
 }
 
 .collectInfoForm input {
   width: 80%;
-  padding: 15px;
+  padding: 10px;
   border-radius: 20px;
   border: none;
-  margin-bottom: 10px;
-  font-weight: 300;
 }
 
 #submitbutton {
-  width: 50%;
+  margin-top:10px;
+  height: 45px;
+  width: 100px;
   background-color: #b4a2f8;
   border-radius: 20px;
   border: none;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
-#submitbutton h3 {
-  text-align: center;
-  color: #000;
-}
-
-#submitbutton:hover h3 {
-  color: #e1ef63;
-  background-color: #000;
 }
 
 /*------------------Mood Slider----------------------*/
 #m1 {
+  max-width: 400px;
+  padding: 18px;
+  margin: auto;
+  margin-top: 18px;
   background-color: rgba(202, 192, 211, 0.6);
   border-radius: 20px;
   text-align: center;
-  padding: 15px;
 }
 
 #Mood h2 {
@@ -80,7 +62,7 @@ h2 {
 }
 
 .emoji {
-  width: 60%;
+  width: 30%;
   height: auto;
   margin-bottom: 15px;
 }
@@ -111,7 +93,6 @@ h2 {
 }
 
 #moodComment {
-  font-weight: 600;
   font-size: 16px;
 }
 
@@ -119,85 +100,77 @@ h2 {
   color: #000;
   border-radius: 20px;
   border: none;
-  height: 50px;
-  width: 120px;
+  height: 45px;
+  width: 100px;
   background-color: rgb(202, 192, 211);
   cursor: pointer;
 }
 
 /*------------------Mood Records----------------------*/
 #m2, #m3 {
-  border: 3px solid #b4a2f8;
+  max-width: 400px;
+  padding: 18px;
+  margin: auto;
+  background-color: #f5f5f5;
   border-radius: 20px;
   text-align: center;
-  margin-bottom: 15px;
-  padding: 10px 25px;
-}
-
-#m2 p, #m3 p {
-  font-weight: 400;
-  font-size: 16px;
+  margin-top: 18px;
 }
 
 #recordedDayCounter {
   font-size: 2rem;
-  font-weight: 600;
 }
 
+  
 /*------------------Triggers----------------------*/
 .accordion {
-  margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  overflow: hidden;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
 }
 
-.accordion-header {
-  width: 100%;
+.accordionHeader {
+  font-size: 1rem;
   text-align: left;
-  padding: 10px 15px;
-  font-weight: bold;
-  cursor: pointer;
+  width: 100%;
+  padding: 18px;
+  margin: auto;
   background-color: #f5f5f5;
+  border-radius: 20px;
   border: none;
   transition: background 0.3s;
 }
 
-.accordion-header:hover {
-  background-color: #e6e6e6;
-}
-
-.accordion-body {
+.accordionContent {
   display: none;
-  padding: 10px;
-  background-color: #fff;
+  width: 100%;
+  padding: 18px;
+  margin: 18px auto;
+  background-color: #eee;
+  border-radius: 20px;
 }
 
-.accordion-body.active {
+.accordionContent.active {
   display: block;
 }
 
-.triggerBtn {
+.triggerButton {
   margin: 5px;
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  padding: 12px 18px;
+  border-radius: 15px;
+  border: none;
   background-color: #f9f9f9;
   cursor: pointer;
   transition: all 0.2s;
 }
 
-.triggerBtn:hover {
-  background-color: #e0e0e0;
-}
-
-.triggerBtn.active {
+.triggerButton.active {
   background-color: #6a9cf8;
   color: #fff;
   border-color: #6a9cf8;
 }
 
-/* Toggle Switch Style */
+/*------------------Toggle Switch----------------------*/
 .switch {
   position: relative;
   display: inline-block;

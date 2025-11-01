@@ -28,8 +28,8 @@
       <form>
         <p>Enter Your Name:</p>
         <input id="name" type="text" name="name" placeholder="Enter name...">
-        <button id="submitbutton" type="button" onclick="checkForm()"><h3>Submit</h3></button>
       </form>
+      <button id="submitbutton" type="button" onclick="checkForm()"><h4>Submit</h4></button>
     </section>
 
     <!--Mood Slider-->
@@ -52,8 +52,8 @@
         <!--Sleep-->
         <!--Start of Code https://www.w3schools.com/howto/howto_js_accordion.asp-->
         <div class="accordion">
-          <button class="accordion-header">Sleep</button>
-          <div class="accordion-body">
+          <button class="accordionHeader">Sleep</button>
+          <div class="accordionContent">
             <label>Sleep Start: <input type="time" id="sleepStart"></label>
             <label>Sleep End: <input type="time" id="sleepEnd"></label>
             <label>Sleep Date: <input type="date" id="sleepDateStart"></label>
@@ -63,71 +63,73 @@
 
         <!--Exercise-->
         <div class="accordion">
-          <button class="accordion-header">Exercise</button>
-          <div class="accordion-body">
-            <button class="triggerBtn" data-type="exercise" data-value="workout">Workout</button>
-            <button class="triggerBtn" data-type="exercise" data-value="cycling">Cycling</button>
-            <button class="triggerBtn" data-type="exercise" data-value="baseball">Baseball</button>
-            <button class="triggerBtn" data-type="exercise" data-value="weight-lifting">Weight-Lifting</button>
-            <button class="triggerBtn" data-type="exercise" data-value="running">Running</button>
-            <button class="triggerBtn" data-type="exercise" data-value="swimming">Swimming</button>
-            <button class="triggerBtn" data-type="exercise" data-value="snowboarding">Snowboarding</button>
-            <button class="triggerBtn" data-type="exercise" data-value="skating">Skating</button>
-            <button class="triggerBtn" data-type="exercise" data-value="hiking">Hiking</button>
-            <button class="triggerBtn" data-type="exercise" data-value="football">Football</button>
-            <button class="triggerBtn" data-type="exercise" data-value="basketball">Basketball</button>
+          <button class="accordionHeader">Exercise</button>
+          <div class="accordionContent">
+            <button class="triggerButton" data-type="exercise" data-value="workout">Workout</button>
+            <button class="triggerButton" data-type="exercise" data-value="cycling">Cycling</button>
+            <button class="triggerButton" data-type="exercise" data-value="baseball">Baseball</button>
+            <button class="triggerButton" data-type="exercise" data-value="weight-lifting">Weight-Lifting</button>
+            <button class="triggerButton" data-type="exercise" data-value="running">Running</button>
+            <button class="triggerButton" data-type="exercise" data-value="swimming">Swimming</button>
+            <button class="triggerButton" data-type="exercise" data-value="snowboarding">Snowboarding</button>
+            <button class="triggerButton" data-type="exercise" data-value="skating">Skating</button>
+            <button class="triggerButton" data-type="exercise" data-value="hiking">Hiking</button>
+            <button class="triggerButton" data-type="exercise" data-value="football">Football</button>
+            <button class="triggerButton" data-type="exercise" data-value="basketball">Basketball</button>
           </div>
         </div>
 
         <!--Hobby-->
         <div class="accordion">
-          <button class="accordion-header">Hobby</button>
-          <div class="accordion-body">
-            <button class="triggerBtn" data-type="hobby" data-value="reading">Reading</button>
-            <button class="triggerBtn" data-type="hobby" data-value="music">Music</button>
-            <button class="triggerBtn" data-type="hobby" data-value="gaming">Gaming</button>
-            <button class="triggerBtn" data-type="hobby" data-value="art">Art</button>
-            <button class="triggerBtn" data-type="hobby" data-value="other">Other</button>
+          <button class="accordionHeader">Hobby</button>
+          <div class="accordionContent">
+            <button class="triggerButton" data-type="hobby" data-value="reading">Reading</button>
+            <button class="triggerButton" data-type="hobby" data-value="music">Music</button>
+            <button class="triggerButton" data-type="hobby" data-value="gaming">Gaming</button>
+            <button class="triggerButton" data-type="hobby" data-value="art">Art</button>
+            <button class="triggerButton" data-type="hobby" data-value="other">Other</button>
           </div>
         </div>
 
         <!--Meal-->
         <div class="accordion">
-          <button class="accordion-header">Meal</button>
-          <div class="accordion-body">
-            <button class="triggerBtn" data-type="meal" data-value="breakfast">Breakfast</button>
-            <button class="triggerBtn" data-type="meal" data-value="lunch">Lunch</button>
-            <button class="triggerBtn" data-type="meal" data-value="dinner">Dinner</button>
-            <button class="triggerBtn" data-type="meal" data-value="snack">Snack</button>
+          <button class="accordionHeader">Meal</button>
+          <div class="accordionContent">
+            <button class="triggerButton" data-type="meal" data-value="breakfast">Breakfast</button>
+            <button class="triggerButton" data-type="meal" data-value="lunch">Lunch</button>
+            <button class="triggerButton" data-type="meal" data-value="dinner">Dinner</button>
+            <button class="triggerButton" data-type="meal" data-value="snack">Snack</button>
           </div>
         </div>
 
         <!--Social-->
         <div class="accordion">
-          <button class="accordion-header">Social</button>
-          <div class="accordion-body">
-            <button class="triggerBtn" data-type="social" data-value="alone">Alone</button>
-            <button class="triggerBtn" data-type="social" data-value="friends">With Friends</button>
-            <button class="triggerBtn" data-type="social" data-value="family">With Family</button>
-            <button class="triggerBtn" data-type="social" data-value="partner">With Partner</button>
+          <button class="accordionHeader">Social</button>
+          <div class="accordionContent">
+            <button class="triggerButton" data-type="social" data-value="alone">Alone</button>
+            <button class="triggerButton" data-type="social" data-value="friends">With Friends</button>
+            <button class="triggerButton" data-type="social" data-value="family">With Family</button>
+            <button class="triggerButton" data-type="social" data-value="partner">With Partner</button>
           </div>
         </div>
 
         <!--Weather-->
         <div class="accordion">
-          <button class="accordion-header">Weather</button>
-          <div class="accordion-body">
-            <button class="triggerBtn" data-type="weather" data-value="sunny">Sunny</button>
-            <button class="triggerBtn" data-type="weather" data-value="rainy">Rainy</button>
-            <button class="triggerBtn" data-type="weather" data-value="cloudy">Cloudy</button>
-            <button class="triggerBtn" data-type="weather" data-value="snowy">Snowy</button>
+          <button class="accordionHeader">Weather</button>
+          <div class="accordionContent">
+            <button class="triggerButton" data-type="weather" data-value="sunny">Sunny</button>
+            <button class="triggerButton" data-type="weather" data-value="rainy">Rainy</button>
+            <button class="triggerButton" data-type="weather" data-value="cloudy">Cloudy</button>
+            <button class="triggerButton" data-type="weather" data-value="windy">Windy</button>
+            <button class="triggerButton" data-type="weather" data-value="stormy">Stormy</button>
+            <button class="triggerButton" data-type="weather" data-value="snowy">Snowy</button>
           </div>
         </div>
 
         <!--Period-->
         <div class="accordion">
-          <button class="accordion-header">Period</button>
-          <div class="accordion-body">
+          <button class="accordionHeader">Period</button>
+          <div class="accordionContent">
             <label class="switch">
               <input type="checkbox" id="periodToggle">
               <span class="slider round"></span>

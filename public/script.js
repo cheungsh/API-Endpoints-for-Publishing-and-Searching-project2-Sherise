@@ -148,7 +148,7 @@ function submitMood() {
 }
 
 /* ---------- Triggers ----------*/
-document.querySelectorAll('.accordion-header').forEach(header => {
+document.querySelectorAll('.accordionHeader').forEach(header => {
   header.addEventListener('click', () => header.nextElementSibling.classList.toggle('active'));
 });
 
@@ -188,23 +188,23 @@ function updateSleep() {
 
     // handle overnight sleep
     let diff = (endDateTime - startDateTime) / (1000 * 60 * 60);
-    if (diff < 0) diff += 24; // if they slept past midnight
+    if (diff < 0) diff += 24;
     triggers.sleepHours = diff;
   }
 }
 
 // Trigger buttons
-document.querySelectorAll('.triggerBtn').forEach(btn => {
+document.querySelectorAll('.triggerButton').forEach(btn => {
   btn.addEventListener('click', e => {
     const { type, value } = e.currentTarget.dataset;
 
     // Toggle the value in the array
     const index = triggers[type].indexOf(value);
     if (index === -1) {
-      triggers[type].push(value); // add if not present
+      triggers[type].push(value);
       e.currentTarget.classList.add('active');
     } else {
-      triggers[type].splice(index, 1); // remove if already present
+      triggers[type].splice(index, 1);
       e.currentTarget.classList.remove('active');
     }
   });

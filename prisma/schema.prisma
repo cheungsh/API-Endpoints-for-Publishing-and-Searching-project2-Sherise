@@ -10,16 +10,21 @@ datasource db {
 model mood {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   date        DateTime @db.Date
+  /// Multiple data types found: String: 80%, Array(String): 20% out of 20 sampled entries
   exercise    Json
+  /// Multiple data types found: String: 80%, Array(String): 20% out of 20 sampled entries
   hobby       Json
-  meal        Json
+  /// Multiple data types found: String: 84.2%, Array(String): 15.8% out of 20 sampled entries
+  meal        Json?
   moodValue   String
   name        String
   period      Boolean
   sleepEnd    DateTime @db.Date
   sleepHours  Float
   sleepStart  DateTime @db.Date
+  /// Multiple data types found: String: 80%, Array(String): 20% out of 20 sampled entries
   social      Json
   suggestions String
+  /// Multiple data types found: String: 80%, Array(String): 20% out of 20 sampled entries
   weather     Json
 }
