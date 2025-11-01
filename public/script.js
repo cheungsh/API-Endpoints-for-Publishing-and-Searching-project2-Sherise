@@ -56,7 +56,6 @@ const emojis = [
     "emoji/shockedEmoji.png",
     "emoji/boredEmoji.png",
     "emoji/excitedEmoji.png",
-    "emoji/chillEmoji.png",
     "emoji/angryEmoji.png",
     "emoji/sadEmoji.png"
 ];
@@ -69,29 +68,50 @@ const backgroundColors = [
     "rgba(172, 189, 137, 0.6)",
     "rgba(171, 119, 129, 0.6)",
     "rgba(198, 216, 239, 0.6)",
-    "rgba(210, 204, 202, 0.6)",
     "rgba(151, 98, 111, 0.6)",
     "rgba(97, 90, 121, 0.6)"
 ];
 
 const buttonColors = [
-    "rgb(202, 192, 211)", "rgb(175, 169, 205)",  "rgb(199, 163, 167)", "rgb(171, 118, 150)", "rgb(172, 189, 137)", "rgb(171, 119, 129)", "rgb(198, 216, 239)",  "rgb(210, 204, 202)", "rgb(151, 98, 111)", "rgb(97, 90, 121)"
+    "rgb(202, 192, 211)", "rgb(175, 169, 205)",  "rgb(199, 163, 167)", "rgb(171, 118, 150)", "rgb(172, 189, 137)", "rgb(171, 119, 129)", "rgb(198, 216, 239)", "rgb(151, 98, 111)", "rgb(97, 90, 121)"
 ];
-const rangeslider = document.getElementById("rangeSlider");
-const currentEmoji = document.querySelector(".emoji");
+
+const moodLabels = [
+  "Calm", "Worried", "Happy", "Frustrated", "Shocked", "Bored", "Excited", "Angry", "Sad"
+];
+
 const m1background = document.getElementById("m1");
+const emojiGallerySlide = document.getElementById("emojiGallerySlide");
+const rangeslider = document.getElementById("rangeSlider");
 const moodbutton = document.getElementById("moodButton");
 const moodcomment = document.getElementById("moodComment");
 
+emojis.forEach((src, index) => {
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = moodLabels[index];
+  if(index === 0) img.classList.add("selected"); 
+  img.addEventListener("click", () => selectEmoji(index));
+  emojiGallerySlide.appendChild(img);
+});
 
-const moodLabels = ["calm", "worried", "happy", "frustrated", "shocked", "bored", "excited", "chill", "angry", "sad"];
+function selectEmoji(selectedIndex) {
+  const allEmojis = emojiGallerySlide.querySelectorAll("img");
+  allEmojis.forEach((img, i) => {
+    if (i === selectedIndex) {
+      img.classList.add("selected");
+      m1background.style.backgroundColor = backgroundColors[i];
+      moodcomment.innerHTML = moodLabels[i];
+      moodbutton.style.backgroundColor = buttonColors[i];
+    } else {
+      img.classList.remove("selected");
+    }
+  });
+   rangeslider.value = selectedIndex;
+}
 
 rangeslider.addEventListener("input", () => {
-  const value = parseInt(rangeslider.value);
-  currentEmoji.src = emojis[value];
-  m1background.style.backgroundColor = backgroundColors[value];
-  moodbutton.style.backgroundColor = buttonColors[value];
-  moodcomment.innerHTML = moodLabels[value];
+  selectEmoji(parseInt(rangeslider.value));
 });
 
 /* ---------- Mood Chart ----------*/
@@ -99,7 +119,7 @@ Chart.defaults.global.legend.position = "bottom";
 Chart.defaults.global.defaultFontSize = 16;
 
 const ctx = document.getElementById("moodChart");
-const moodTypes = ["Calm", "Worried", "Happy", "Frustrated", "Shocked", "Bored", "Excited", "Chill", "Angry", "Sad"];
+const moodTypes = ["Calm", "Worried", "Happy", "Frustrated", "Shocked", "Bored", "Excited", "Angry", "Sad"];
 const chartData = moodTypes.map(type => parseInt(localStorage.getItem(`${type.toLowerCase()}ChartData`)) || 0);
 
 /* Start of Code https://www.w3schools.com/ai/ai_chartjs.asp */
@@ -129,16 +149,20 @@ const myChart = new Chart(ctx, {
 
 /* End of Code https://www.w3schools.com/ai/ai_chartjs.asp */
 
+/* ---------- Recorded Days ----------*/
+const counterElement = document.getElementById("recordedDayCounter");
+let recordedDayCounter = parseInt(localStorage.getItem("recordedDayCounter")) || 0;
+counterElement.innerHTML = recordedDayCounter;
+
 /* ---------- Submit Mood ----------*/
 function submitMood() {
-  let recordedDayCounter = parseInt(localStorage.getItem("recordedDayCounter")) || 0;
   const selectedMood = moodcomment.innerHTML;
   const name = localStorage.getItem("name") || "Anonymous";
-  const today = new Date().toDateString();
-  const lastRecorded = localStorage.getItem("lastRecordedDate");
-  const counterElement = document.getElementById("recordedDayCounter");
 
   /* ---------- Recorded Days Counter ----------*/
+  const today = new Date().toDateString();
+  const lastRecorded = localStorage.getItem("lastRecordedDate");
+  
   if (lastRecorded !== today) {
     recordedDayCounter++;
     localStorage.setItem("recordedDayCounter", recordedDayCounter);
@@ -146,7 +170,6 @@ function submitMood() {
   }
   counterElement.innerHTML = recordedDayCounter;
   
-  // Update chart data
   const moodIndex = moodLabels.indexOf(selectedMood);
   if (moodIndex !== -1) {
     myChart.data.datasets[0].data[moodIndex]++;

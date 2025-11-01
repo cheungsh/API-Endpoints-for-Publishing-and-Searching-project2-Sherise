@@ -35,12 +35,12 @@
     <!--Mood Slider-->
     <section id="m1" class="moodContent">
       <div id="moodSliderContainer">
-        <p>I'm feeling</p>
-        <img id="calmEmoji" class="emoji" src="emoji/calmEmoji.png" alt="Mood Emoji">
-        <input id="rangeSlider" type="range" value="0" min="0" max="9">
+        <p>I feel</p>
+        <div id="emojiGallerySlide"></div>
+        <input id="rangeSlider" type="range" value="0" min="0" max="8">
         <button id="moodButton" class="moodButton" type="button">
           <div id="moodCommentContainer">
-            <div id="moodComment">calm</div>
+            <div id="moodComment">Calm</div>
           </div>
         </button>
       </div>
@@ -147,9 +147,8 @@
 
     <!--Mood Records-->
     <section>
-      <h3>Mood Chart</h3>
+      <h3>Monthly Mood Chart</h3>
       <div id="m3" class="moodContent">
-        <p>This Month</p>
         <div id="chartContainer">
           <canvas id="moodChart" width="200" height="200"></canvas>
         </div>
