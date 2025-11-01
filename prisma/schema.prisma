@@ -10,16 +10,16 @@ datasource db {
 model mood {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   date        DateTime @db.Date
-  exercise    String[]
-  hobby       String[]
-  meal        String[]
+  exercise    Json?
+  hobby       Json?
+  meal        Json?
   moodValue   String
   name        String
-  period      Boolean
-  sleepEnd    DateTime @db.Date
-  sleepHours  Float
-  sleepStart  DateTime @db.Date
-  social      String[]
+  period      Boolean?
+  sleepEnd    DateTime? @db.Date
+  sleepHours  Float?
+  sleepStart  DateTime? @db.Date
+  social      Json?
   suggestions String
-  weather     String[]
+  weather     Json?
 }

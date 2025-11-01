@@ -129,21 +129,23 @@ const myChart = new Chart(ctx, {
 
 /* End of Code https://www.w3schools.com/ai/ai_chartjs.asp */
 
-/* ---------- Recorded Days Counter ----------*/
-let recordedDayCounter = parseInt(localStorage.getItem("recordedDayCounter")) || 0;
-const counterElement = document.getElementById("recordedDayCounter");
-counterElement.innerHTML = recordedDayCounter;
-
 /* ---------- Submit Mood ----------*/
 function submitMood() {
+  let recordedDayCounter = parseInt(localStorage.getItem("recordedDayCounter")) || 0;
   const selectedMood = moodcomment.innerHTML;
   const name = localStorage.getItem("name") || "Anonymous";
+  const today = new Date().toDateString();
+  const lastRecorded = localStorage.getItem("lastRecordedDate");
+  const counterElement = document.getElementById("recordedDayCounter");
 
-  // Update day counter
-  recordedDayCounter++;
-  localStorage.setItem("recordedDayCounter", recordedDayCounter);
+  /* ---------- Recorded Days Counter ----------*/
+  if (lastRecorded !== today) {
+    recordedDayCounter++;
+    localStorage.setItem("recordedDayCounter", recordedDayCounter);
+    localStorage.setItem("lastRecordedDate", today);
+  }
   counterElement.innerHTML = recordedDayCounter;
-
+  
   // Update chart data
   const moodIndex = moodLabels.indexOf(selectedMood);
   if (moodIndex !== -1) {
@@ -151,12 +153,6 @@ function submitMood() {
     localStorage.setItem(`${selectedMood}ChartData`, myChart.data.datasets[0].data[moodIndex]);
     myChart.update();
   }
-
-  // Store current mood
-  localStorage.setItem("mood", selectedMood);
-
-  // Send basic payload to backend
-  sendMoodData({ name, moodValue: selectedMood });
 }
 
 /* ---------- Triggers ----------*/
@@ -247,6 +243,8 @@ moodbutton.addEventListener('click', async () => {
     suggestion = 'It’s great to have some alone time :)';
 
   document.getElementById('suggestionText').innerText = suggestion;
+
+  submitMood();
 
   //Send all to backend
   await sendMoodData({ name, moodValue: selectedMood, ...triggers, suggestions: suggestion });
