@@ -113,8 +113,20 @@ const myChart = new Chart(ctx, {
       backgroundColor: buttonColors,
       borderWidth: 3
     }]
+  },
+  options: {
+    legend: {
+      position: 'bottom',
+      labels: {
+        fontSize: 16,
+        fontColor: '#000',
+        padding: 10,
+        boxWidth: 15
+      }
+    }
   }
 });
+
 /* End of Code https://www.w3schools.com/ai/ai_chartjs.asp */
 
 /* ---------- Recorded Days Counter ----------*/
@@ -149,8 +161,13 @@ function submitMood() {
 
 /* ---------- Triggers ----------*/
 document.querySelectorAll('.accordionHeader').forEach(header => {
-  header.addEventListener('click', () => header.nextElementSibling.classList.toggle('active'));
+  header.addEventListener('click', () => {
+    const content = header.nextElementSibling;
+    content.classList.toggle('active');
+    header.classList.toggle('active');
+  });
 });
+
 
 const triggers = {
   sleepStart: null,
@@ -200,6 +217,7 @@ document.querySelectorAll('.triggerButton').forEach(btn => {
 
     // Toggle the value in the array
     const index = triggers[type].indexOf(value);
+
     if (index === -1) {
       triggers[type].push(value);
       e.currentTarget.classList.add('active');

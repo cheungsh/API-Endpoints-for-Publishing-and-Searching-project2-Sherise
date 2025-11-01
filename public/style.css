@@ -32,8 +32,8 @@ h2 {
 
 .collectInfoForm input {
   width: 80%;
-  padding: 10px;
-  border-radius: 20px;
+  padding: 12px 18px;
+  border-radius: 15px;
   border: none;
 }
 
@@ -48,10 +48,8 @@ h2 {
 
 /*------------------Mood Slider----------------------*/
 #m1 {
-  max-width: 400px;
   padding: 18px;
-  margin: auto;
-  margin-top: 18px;
+  margin-bottom: 18px;
   background-color: rgba(202, 192, 211, 0.6);
   border-radius: 20px;
   text-align: center;
@@ -103,30 +101,11 @@ h2 {
   height: 45px;
   width: 100px;
   background-color: rgb(202, 192, 211);
-  cursor: pointer;
 }
-
-/*------------------Mood Records----------------------*/
-#m2, #m3 {
-  max-width: 400px;
-  padding: 18px;
-  margin: auto;
-  background-color: #f5f5f5;
-  border-radius: 20px;
-  text-align: center;
-  margin-top: 18px;
-}
-
-#recordedDayCounter {
-  font-size: 2rem;
-}
-
   
 /*------------------Triggers----------------------*/
-.accordion {
-  width: 100%;
-  max-width: 400px;
-  margin: 20px auto;
+.accordion{
+  margin-bottom: 18px;
 }
 
 .accordionHeader {
@@ -134,20 +113,24 @@ h2 {
   text-align: left;
   width: 100%;
   padding: 18px;
-  margin: auto;
+  margin: 0;
   background-color: #f5f5f5;
-  border-radius: 20px;
+  border-radius: 20px 20px 0 0;
   border: none;
   transition: background 0.3s;
+}
+
+.accordionHeader.active {
+  border-radius: 20px;
 }
 
 .accordionContent {
   display: none;
   width: 100%;
   padding: 18px;
-  margin: 18px auto;
+  margin: 0;
   background-color: #eee;
-  border-radius: 20px;
+  border-radius: 0 0 20px 20px;
 }
 
 .accordionContent.active {
@@ -160,8 +143,6 @@ h2 {
   border-radius: 15px;
   border: none;
   background-color: #f9f9f9;
-  cursor: pointer;
-  transition: all 0.2s;
 }
 
 .triggerButton.active {
@@ -170,7 +151,15 @@ h2 {
   border-color: #6a9cf8;
 }
 
-/*------------------Toggle Switch----------------------*/
+input[type="time"], input[type="date"]{
+  margin: 5px;
+  font-size: 1rem;
+  text-align: center;
+  background-color: #fff;
+  border:none;
+  border-radius: 10px;
+}
+
 .switch {
   position: relative;
   display: inline-block;
@@ -216,20 +205,17 @@ h2 {
   transform: translateX(26px);
 }
 
-/*------------------Grids----------------------*/
-.two-row {
-    display: grid;
-    grid-template-rows: repeat(2, 1fr); 
+/*------------------Mood Records----------------------*/
+#m2, #m3 {
+  max-width: 400px;
+  padding: 18px;
+  margin: auto;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  text-align: center;
+  margin-top: 18px;
 }
-.two-col { 
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
-}
-.three-col { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-}
-.two-one-col { 
-    display: grid; 
-    grid-template-columns: 2fr 1fr; 
+
+#recordedDayCounter {
+  font-size: 2rem;
 }
