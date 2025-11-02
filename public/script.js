@@ -205,7 +205,6 @@ document.querySelectorAll('.accordionHeader').forEach(header => {
   });
 });
 
-
 const triggers = {
   sleepStart: null,
   sleepEnd: null,
@@ -218,11 +217,10 @@ const triggers = {
   period: false
 };
 
-// Sleep input
+// Sleep inputs
 const sleepStartEl = document.getElementById('sleepStart');
 const sleepEndEl = document.getElementById('sleepEnd');
 const sleepDateEl = document.getElementById('sleepDateStart');
-
 
 sleepStartEl.addEventListener('change', () => updateSleep());
 sleepEndEl.addEventListener('change', () => updateSleep());
@@ -240,7 +238,6 @@ function updateSleep() {
     triggers.sleepStart = startDateTime;
     triggers.sleepEnd = endDateTime;
 
-    // handle overnight sleep
     let diff = (endDateTime - startDateTime) / (1000 * 60 * 60);
     if (diff < 0) diff += 24;
     triggers.sleepHours = diff;
@@ -273,23 +270,121 @@ if (periodToggle) periodToggle.addEventListener('change', e => triggers.period =
 moodbutton.addEventListener('click', async () => {
   const selectedMood = moodcomment.innerText;
   const name = localStorage.getItem('name') || 'Anonymous';
+  
+  const { sleepHours, exercise, hobby, meal, social, weather, period } = triggers;
+  let suggestion = "You’re doing great! Keep looking after yourself.";
 
-  //Suggestions make edits so it checks mood as well
-  let suggestion = 'You are holding up great, I’m sure tomorrow will be even better.';
-  if (triggers.sleepHours && triggers.sleepHours < 6)
-    suggestion = 'Try to rest more — aim for 8–10 hours of sleep.';
-  else if (triggers.exercise)
-    suggestion = `Nice work with ${triggers.exercise}! Keep it up!`;
-  else if (triggers.social === 'alone')
-    suggestion = 'It’s great to have some alone time :)';
+  //Mood based suggestions
+  switch (selectedMood) {
+    case 'calm':
+      suggestion = "You seem the be at ease right now, enjoy it.";
+      break;
+    case 'chill':
+      suggestion = "Nice to know you're taking things easy, keep this relaxed energy going!";
+      break;
+    case 'happy':
+      suggestion = "It's great to see you happy! Spread that joy around!";
+      break;
+    case 'excited':
+      suggestion = "You’re buuuzzzzzing with energy. Go make the most of it!";
+      break;
+    case 'bored':
+      suggestion = "Maybe try something new today? A fresh hobby or a walk outside could shake things up.";
+      break;
+    case 'worried':
+      suggestion = "Thing always seem worse in our heads. Try some deep breathing or a short walk to clear your mind.";
+      break;
+    case 'sad':
+      suggestion = "I know it's been a rough day... Be gentle with yourself. Maybe call a friend, take a little me-time or take a warm shower.";
+      break;
+    case 'frustrated':
+      suggestion = "Ugh, frustrating day huh? Step away for a bit maybe working out or some music might help reset your mood.";
+      break;
+    case 'angry':
+      suggestion = "Hmmm, have you tried boxing? Letting out that energy physically might be able to help cool down your anger.";
+      break;
+  }
 
+  //Trigger based suggestions
+  if (sleepHours && sleepHours < 6) {
+    suggestion = "Looks like you didn’t get much sleep... But your body and mind need it, aim for at least 7–8 hours.";
+  }
+
+  if (exercise && exercise.length > 0) {
+    suggestion = `Nice job with ${exercise.join(", ")}! Staying active really supports your mood.`;
+  }
+
+  if (hobby && hobby.length > 0) {
+    suggestion = `Keep spending time on ${hobby.join(", ")}? Seems like something that will make you feel better.`;
+  }
+
+  if (meal && meal.length < 2) {
+    suggestion = "Looks like you haven't eaten much today. Grab something to boost your energy!";
+  }
+
+  if (meal && meal.includes("midnight snack")) {
+    suggestion = "Late-night snacking can affect your rest... Try to wrap up meals earlier when possible.";
+  }
+
+  if (social === "alone") {
+    suggestion = "We all need some alone time sometimes. Just don’t forget that there're others out there waiting for you to come back.";
+  } else if (["friends", "family", "partner"].includes(social)) {
+    suggestion = `Nice to see you spending time with your ${social}! Social connection could really strengthen ones' emotional balance.`;
+  } else if (social === "alone" && selectedMood === "sad") {
+    suggestion = "Being alone is fine, but reaching out to someone can really help.";
+  } else if (["friends", "family", "partner"].includes(social) && selectedMood === "frustrated") {
+    suggestion = "Seems like you could use some alone time. Others seems to have drained out every last bit of your energy.";
+  }
+
+  if (weather && weather.includes("rainy") && ["sad", "worried"].includes(selectedMood)) {
+    suggestion = "Rainy days can feel heavier... but maybe a warm drink and some cozy music could lift your mood.";
+  }
+
+  if (weather && weather.includes("rainy") && selectedMood === "happy") {
+    suggestion = "The sound of rain makes such a nice white noise, doesn’t it?";
+  }
+
+  if (weather && weather.includes("sunny") && ["happy", "excited"].includes(selectedMood)) {
+    suggestion = "Perfect weather to make the most of your good mood! Get outside and enjoy it!";
+  }
+
+  if (weather && weather.includes("snowy")) {
+    suggestion = "Brrr… it's so cold outside! A nice cup of hot chocolate might help warm you up.";
+  }
+
+  if (period === true && ["sad", "frustrated", "angry"].includes(selectedMood)) {
+    suggestion = "Take it easy today, rest, hydrate, and be kind to yourself. Hang in there girl!";
+  }
+
+  //Combination conditions
+  if (selectedMood === "bored" && (!hobby || hobby.length === 0)) {
+    suggestion = "Feeling bored? Maybe pick something from the hobbies section and try it out, it might end up better than you think.";
+  }
+
+  if (selectedMood === "angry" && (!exercise || exercise.length === 0)) {
+    suggestion = "Channel that anger into action. Go for a walk, run, or just move around can really help.";
+  }
+
+  if (selectedMood === "sad" && social === "alone") {
+    suggestion = "You don’t have to go through it alone if you don't want to, try reaching out to someone can really help.";
+  }
+
+  if (selectedMood === "excited" && weather && weather.includes("sunny")) {
+    suggestion = "Sunshine + excitement = perfect combo. Go make a memory today!";
+  }
+
+  // Display the suggestion text
   document.getElementById('suggestionText').innerText = suggestion;
 
+  // Save mood entry
   submitMood();
 
-  //Send all to backend
-  await sendMoodData({ name, moodValue: selectedMood, ...triggers, suggestions: suggestion, streak: recordedDayCounter });
+  // Send all data to backend
+  await sendMoodData({
+    name,moodValue: selectedMood,...triggers, suggestions: suggestion, streak: recordedDayCounter
+  });
 });
+
 
 /* ---------- Send Data to Backend ----------*/
 async function sendMoodData(data) {
