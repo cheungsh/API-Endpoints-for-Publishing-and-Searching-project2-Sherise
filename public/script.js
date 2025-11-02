@@ -50,35 +50,44 @@ function openMood(evt, moodName) {
 
 const emojis = [
     "emoji/calmEmoji.png",
-    "emoji/worriedEmoji.png",
+    "emoji/chillEmoji.png",
     "emoji/happyEmoji.png",
-    "emoji/frustratedEmoji.png",
-    "emoji/shockedEmoji.png",
-    "emoji/boredEmoji.png",
     "emoji/excitedEmoji.png",
-    "emoji/angryEmoji.png",
-    "emoji/sadEmoji.png"
+    "emoji/boredEmoji.png",
+    "emoji/worriedEmoji.png",
+    "emoji/sadEmoji.png",
+    "emoji/frustratedEmoji.png",
+    "emoji/angryEmoji.png"
 ];
 
 const backgroundColors = [
-    "rgba(202, 192, 211, 0.6)", 
-    "rgba(175, 169, 205, 0.6)",
-    "rgba(199, 163, 167, 0.6)",
-    "rgba(171, 118, 150, 0.6)",
-    "rgba(172, 189, 137, 0.6)",
-    "rgba(171, 119, 129, 0.6)",
-    "rgba(198, 216, 239, 0.6)",
-    "rgba(151, 98, 111, 0.6)",
-    "rgba(97, 90, 121, 0.6)"
+  "rgba(202, 192, 211, 0.4)",
+  "rgba(210, 204, 202, 0.4)",
+  "rgba(199, 163, 167, 0.4)",
+  "rgba(198, 216, 239, 0.4)",
+  "rgba(171, 119, 129, 0.4)",
+  "rgba(175, 169, 205, 0.4)",
+  "rgba(97, 90, 121, 0.4)",
+  "rgba(171, 118, 150, 0.4)",
+  "rgba(151, 98, 111, 0.4)"
 ];
 
 const buttonColors = [
-    "rgb(202, 192, 211)", "rgb(175, 169, 205)",  "rgb(199, 163, 167)", "rgb(171, 118, 150)", "rgb(172, 189, 137)", "rgb(171, 119, 129)", "rgb(198, 216, 239)", "rgb(151, 98, 111)", "rgb(97, 90, 121)"
+  "rgba(202, 192, 211)",
+  "rgba(210, 204, 202)",
+  "rgba(199, 163, 167)",
+  "rgba(198, 216, 239)",
+  "rgba(171, 119, 129)",
+  "rgba(175, 169, 205)",
+  "rgba(97, 90, 121)",
+  "rgba(171, 118, 150)",
+  "rgba(151, 98, 111)"
 ];
 
 const moodLabels = [
-  "Calm", "Worried", "Happy", "Frustrated", "Shocked", "Bored", "Excited", "Angry", "Sad"
+  "Calm", "Chill", "Happy", "Excited", "Bored", "Worried", "Sad", "Frustrated", "Angry"
 ];
+
 
 const m1background = document.getElementById("m1");
 const emojiGallerySlide = document.getElementById("emojiGallerySlide");
@@ -103,6 +112,7 @@ function selectEmoji(selectedIndex) {
       m1background.style.backgroundColor = backgroundColors[i];
       moodcomment.innerHTML = moodLabels[i];
       moodbutton.style.backgroundColor = buttonColors[i];
+      rangeslider.style.backgroundColor = ('--thumb-color', buttonColors[i]);
     } else {
       img.classList.remove("selected");
     }
@@ -119,7 +129,7 @@ Chart.defaults.global.legend.position = "bottom";
 Chart.defaults.global.defaultFontSize = 16;
 
 const ctx = document.getElementById("moodChart");
-const moodTypes = ["Calm", "Worried", "Happy", "Frustrated", "Shocked", "Bored", "Excited", "Angry", "Sad"];
+const moodTypes = ["Calm", "Chill", "Happy", "Excited", "Bored", "Worried", "Sad", "Frustrated", "Angry"];
 const chartData = moodTypes.map(type => parseInt(localStorage.getItem(`${type.toLowerCase()}ChartData`)) || 0);
 
 /* Start of Code https://www.w3schools.com/ai/ai_chartjs.asp */
@@ -139,7 +149,8 @@ const myChart = new Chart(ctx, {
       position: 'bottom',
       labels: {
         fontSize: 16,
-        fontColor: '#000',
+        FontFacet: 'Open Sans',
+        fontColor: '#414141',
         padding: 10,
         boxWidth: 15
       }

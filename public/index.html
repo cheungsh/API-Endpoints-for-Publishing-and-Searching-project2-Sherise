@@ -10,10 +10,24 @@
   <script src="https://kit.fontawesome.com/05d91707e7.js" crossorigin="anonymous"></script>
   <!--Cloudflare Donut Chart API-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+  <!--Google Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
   <title>Mood Tracker</title>
 </head>
 
 <body>
+  <!--Mood Button Bottom Nav-->
+  <nav id="moodButtonNav">
+    <button id="moodButton" class="moodButton" type="button">
+      <div id="moodCommentContainer">
+        <div id="moodComment">Calm</div>
+      </div>
+    </button>
+  </nav>
+
+  <!--Main-->
   <main>
     <!--Greeting-->
     <section id="greetingContainer">
@@ -26,7 +40,7 @@
     <!--User Name Input-->
     <section id="infoContainer" class="collectInfoForm">
       <form>
-        <p>Enter Your Name:</p>
+        <h4>Enter Your Name:</h4>
         <input id="name" type="text" name="name" placeholder="Enter name...">
       </form>
       <button id="submitbutton" type="button" onclick="checkForm()">Submit</button>
@@ -35,14 +49,9 @@
     <!--Mood Slider-->
     <section id="m1" class="moodContent">
       <div id="moodSliderContainer">
-        <p>I feel</p>
+        <h3>How do you feel today?</h3>
         <div id="emojiGallerySlide"></div>
         <input id="rangeSlider" type="range" value="0" min="0" max="8">
-        <button id="moodButton" class="moodButton" type="button">
-          <div id="moodCommentContainer">
-            <div id="moodComment">Calm</div>
-          </div>
-        </button>
       </div>
     </section>
 
@@ -54,9 +63,9 @@
         <div class="accordion active">
           <button class="accordionHeader">Sleep</button>
           <div class="accordionContent active">
-            <label>Sleep Start: <input type="time" id="sleepStart"></label>
-            <label>Sleep End: <input type="time" id="sleepEnd"></label>
-            <label>Sleep Date: <input type="date" id="sleepDateStart"></label>
+            <label class="sleepInput">Sleep Start: <input type="time" id="sleepStart"></label>
+            <label class="sleepInput">Sleep End: <input type="time" id="sleepEnd"></label>
+            <label class="sleepInput">Sleep Date: <input type="date" id="sleepDateStart"></label>
           </div>
         </div>
         <!--End of Code https://www.w3schools.com/howto/howto_js_accordion.asp-->
@@ -147,17 +156,16 @@
 
     <!--Mood Records-->
     <section>
-      <h3>Monthly Mood Chart</h3>
       <div id="m3" class="moodContent">
+        <h3>Monthly Mood Chart</h3>
         <div id="chartContainer">
           <canvas id="moodChart" width="200" height="200"></canvas>
         </div>
       </div>
 
       <div id="m2" class="moodContent">
-        <p>Recorded Streak</p>
+        <h3>Days Logged</h3>
         <div id="recordedDayCounter"></div>
-        <p>Days</p>
       </div>
     </section>
   </main>

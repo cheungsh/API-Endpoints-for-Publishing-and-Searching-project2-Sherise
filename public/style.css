@@ -1,8 +1,11 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-size: 1rem;
-  font-family: sans-serif;
+  background-color: #f5f5f5;
+  color: #414141;
+  /*Nav overlap*/
+  padding-bottom: 80px;
+}
+
+main{
   max-width: 400px;
   padding: 18px;
   margin: auto;
@@ -11,44 +14,104 @@ body {
 h2 {
   text-align: center;
   font-size: 1.5rem;
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 700;
 }
 
-.responsive {
-  max-width: 100%;
-  height: auto;
+h3{
+  font-size: 1rem;
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 600;
+}
+
+h4{
+  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+}
+
+input{
+  font-size: 0.9rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
+button{
+  font-size: 0.9rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
 }
 
 * {
   box-sizing: border-box;
 }
+/*-------------------Greeting---------------------*/
+#greetingContainer h2{
+  color: #414141;
+}
 
 /*-------------------User Name Form---------------------*/
-.collectInfoForm {
+.collectInfoForm{
   text-align: center;
   padding: 10px;
-  background-color: #e1ef63;
+  background-color: #d3ddce;
   border-radius: 20px;
   margin-bottom: 18px;
 }
 
-.collectInfoForm input {
+.collectInfoForm input{
   width: 80%;
   padding: 12px 18px;
   border-radius: 15px;
   border: none;
 }
 
+.collectInfoForm p{
+  color: #627954;
+}
+
 #submitbutton {
   margin-top:10px;
   height: 45px;
   width: 100px;
-  background-color: #b4a2f8;
+  color: #d3ddce;
+  background-color: #627954;
   border-radius: 20px;
   border: none;
 }
 
+/*-------------------Submit Button Nav---------------------*/
+#moodButtonNav{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width:100%;
+  padding: 18px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#moodButton{
+  color: #414141;
+  font-size: 1rem;
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 600;
+  border-radius: 15px;
+  border: none;
+  height: 45px;
+  width: 100%;
+  background-color: rgb(202, 192, 211);
+}
+
+#moodComment{
+  font-size: 16px;
+}
+
 /*------------------Emoji Gallery Slide----------------------*/
-#emojiGallerySlide {
+#emojiGallerySlide{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
@@ -56,71 +119,62 @@ h2 {
   margin: 15px 0;
 }
 
-#emojiGallerySlide img {
+#emojiGallerySlide img{
   width: 50px;
   height: 50px;
   transition: transform 0.2s;
 }
 
-#emojiGallerySlide img.selected {
+#emojiGallerySlide img.selected{
   transform: scale(1.5);
 }
 
 /*------------------Mood Slider----------------------*/
-#m1 {
+#m1{
   padding: 18px;
   margin-bottom: 18px;
-  background-color: rgba(202, 192, 211, 0.6);
+  background-color: rgba(202, 192, 211, 0.4);
   border-radius: 20px;
   text-align: center;
 }
 
-#Mood h2 {
+#Mood h2{
   color: #000;
 }
 
-img {
+img{
   width: 30%;
   height: auto;
   margin-bottom: 15px;
 }
 
-#moodSliderContainer {
+#moodSliderContainer{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-#rangeSlider {
+#moodSliderContainer h3{
+  color: #414141;
+}
+
+#rangeSlider{
   width: 80%;
   height: 30px;
   border-radius: 20px;
   margin: 10px 0 15px;
   appearance: none;
-  background-color: #fff;
+  background-color: rgba(202, 192, 211);
   outline: none;
 }
 
-#rangeSlider::-webkit-slider-thumb {
+#rangeSlider::-webkit-slider-thumb{
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background-color: #b4a2f8;
   appearance: none;
-}
-
-#moodComment {
-  font-size: 16px;
-}
-
-#moodButton {
-  color: #000;
-  border-radius: 20px;
-  border: none;
-  height: 45px;
-  width: 100px;
-  background-color: rgb(202, 192, 211);
+  background-color: #fff;
 }
   
 /*------------------Triggers----------------------*/
@@ -128,13 +182,16 @@ img {
   margin-bottom: 18px;
 }
 
-.accordionHeader {
+.accordionHeader{
   font-size: 1rem;
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 600;
   text-align: left;
   width: 100%;
   padding: 18px;
   margin: 0;
-  background-color: #f5f5f5;
+  background-color: #d3ddce;
+  color: #627954;
   border-radius: 20px 20px 0 0;
   border: none;
   transition: background 0.3s;
@@ -149,7 +206,8 @@ img {
   width: 100%;
   padding: 18px;
   margin: 0;
-  background-color: #eee;
+  background-color: #fff;
+  color: #414141;
   border-radius: 0 0 20px 20px;
 }
 
@@ -162,20 +220,26 @@ img {
   padding: 12px 18px;
   border-radius: 15px;
   border: none;
-  background-color: #f9f9f9;
+  background-color: #f5f5f5;
+  color: #414141;
 }
 
 .triggerButton.active {
-  background-color: #6a9cf8;
+  background-color: #627954;
   color: #fff;
-  border-color: #6a9cf8;
 }
 
-input[type="time"], input[type="date"]{
-  margin: 5px;
+.sleepInput{
+  display:block;
   font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+.sleepInput input{
+  margin: 5px;
   text-align: center;
-  background-color: #fff;
+  background-color: #f5f5f5;
   border:none;
   border-radius: 10px;
 }
@@ -195,7 +259,7 @@ input[type="time"], input[type="date"]{
 
 .switch .slider {
   position: absolute;
-  background-color: #ccc;
+  background-color: #414141;
   transition: 0.4s;
   top: 0;
   left: 0;
@@ -211,7 +275,7 @@ input[type="time"], input[type="date"]{
   width: 20px;
   left: 2px;
   bottom: 2px;
-  background-color: white;
+  background-color: #fff;
   transition: 0.4s;
   border-radius: 50%;
 }
@@ -224,17 +288,30 @@ input[type="time"], input[type="date"]{
   transform: translateX(26px);
 }
 
+/*------------------Suggestion----------------------*/
+#suggestionOutput{
+  color: #414141;
+}
+
+#suggestionText{
+  font-size: 0.9rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
 /*------------------Mood Records----------------------*/
 #m2, #m3 {
-  max-width: 400px;
   padding: 18px;
-  margin: auto;
-  background-color: #f5f5f5;
+  background-color: #fff;
   border-radius: 20px;
   text-align: center;
   margin-top: 18px;
+  color: #414141;
 }
 
 #recordedDayCounter {
   font-size: 2rem;
+  color: #627954;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
 }
