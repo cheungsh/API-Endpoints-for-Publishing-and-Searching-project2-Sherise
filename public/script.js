@@ -125,18 +125,25 @@ rangeslider.addEventListener("input", () => {
 });
 
 /* ---------- Mood Chart ----------*/
-Chart.defaults.global.legend.position = "bottom";
-Chart.defaults.global.defaultFontSize = 16;
-
 const ctx = document.getElementById("moodChart");
-const moodTypes = ["Calm", "Chill", "Happy", "Excited", "Bored", "Worried", "Sad", "Frustrated", "Angry"];
-const chartData = moodTypes.map(type => parseInt(localStorage.getItem(`${type.toLowerCase()}ChartData`)) || 0);
+const currentMonth = new Date().getMonth();
+const lastSavedMonth = parseInt(localStorage.getItem("moodChartMonth"));
+
+// Refresh chart every month
+if (lastSavedMonth !== currentMonth) {
+    moodLabels.forEach(label => localStorage.setItem(`${label}ChartData`, 0));
+    localStorage.setItem("moodChartMonth", currentMonth);
+}
+
+const chartData = moodLabels.map(
+  label => parseInt(localStorage.getItem(`${label}ChartData`)) || 0
+);
 
 /* Start of Code https://www.w3schools.com/ai/ai_chartjs.asp */
 const myChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: moodTypes,
+    labels: moodLabels,
     datasets: [{
       label: '# of Emotions',
       data: chartData,
@@ -171,13 +178,13 @@ function submitMood() {
   const name = localStorage.getItem("name") || "Anonymous";
 
   /* ---------- Recorded Days Counter ----------*/
-  const today = new Date().toDateString();
+  const todayString = new Date().toDateString();
   const lastRecorded = localStorage.getItem("lastRecordedDate");
   
-  if (lastRecorded !== today) {
+  if (lastRecorded !== todayString) {
     recordedDayCounter++;
     localStorage.setItem("recordedDayCounter", recordedDayCounter);
-    localStorage.setItem("lastRecordedDate", today);
+    localStorage.setItem("lastRecordedDate", todayString);
   }
   counterElement.innerHTML = recordedDayCounter;
   
@@ -281,7 +288,7 @@ moodbutton.addEventListener('click', async () => {
   submitMood();
 
   //Send all to backend
-  await sendMoodData({ name, moodValue: selectedMood, ...triggers, suggestions: suggestion });
+  await sendMoodData({ name, moodValue: selectedMood, ...triggers, suggestions: suggestion, streak: recordedDayCounter });
 });
 
 /* ---------- Send Data to Backend ----------*/
